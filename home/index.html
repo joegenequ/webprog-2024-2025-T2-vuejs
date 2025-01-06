@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>My first Vue page</title>
+  <style>
+    #app {
+      display: inline-block;
+      padding: 10px;
+      font-size: x-large;
+      background-color: lightgreen;
+    }
+  </style>
 </head>
 <body>
 
-  <div id="app">
-    {{ message }}
-  </div>
+<h1>Example with JavaScript inside {{ }}</h1>
 
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<p>The 'message' text from the Vue instance is put together with another text and a JavaScript expression. The JavaScript expression creates a random integer between 1 and 6.</p>
 
-  <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          message: "Hello World!"
-        }
-      }
-    })
+<div id="app">
+  {{ message }} <br>
+  {{'Random number: ' + Math.ceil(Math.random()*6) }}
+</div>
 
-   app.mount('#app')
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-  </script>
+<script>
+  const app = Vue.createApp({
+   data() {
+    return {
+     message: "Hello World!"
+    }
+   }
+  })
+  
+  app.mount('#app')
+
+</script>
+
 </body>
 </html>
