@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/images.css?version=0.1">
   <link rel="stylesheet" href="css/shopping_list.css?version=0.2">
+  <link rel="stylesheet" href="css/restaurant.css?version=0.1">
 
 </head>
 <body>
@@ -79,12 +80,56 @@
   </div>
 </div>
 
+<div id="app4">
+  <form v-on:submit.prevent="addItem">
+    <p>
+      <h4>Order here:</h4>
+    <label>
+      <input type="radio" required value="Dinner" v-model="itemType" name="rbgType">Dinner
+    </label><br>
+    <label>
+      <input type="radio" required value="Drink" v-model="itemType" name="rbgType">Drink
+    </label><br>
+    <label>
+      <input type="radio" required value="Dessert" v-model="itemType" name="rbgType">Dessert
+    </label>
+    </p>
+    <p v-show="itemType">
+      <label>
+        <select required v-model="itemName" v-on:change="newUrl">
+          <option value="" selected disabled>Select item</option>
+          <option v-for="item in preDefItems" v-bind:value="item.name" v-show="item.type===itemType" v-bind:data-url="item.imgUrl">
+            {{ item.name }}
+          </option>
+        </select>
+      </label>
+    </p>
+    <img v-bind:src="itemUrl">
+    <p v-show="itemName">
+      <input type="number" placeholder="How many?" v-model="itemNumber" required>
+    </p>
+    <button type="submit">Order</button>
+  </form>
+  <br>
+  <hr>
 
+  <div>
+    <h4>Your order:</h4>
+    <ul id="ulToFind">
+      <li v-for="item in order">
+          {{ item.name }}, {{ item.number}} <img v-bind:src="item.url">
+      </li>
+    </ul>
+
+    </ul>
+  </div>
+</div>
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/images.js"></script>
 <script src="js/shopping_list.js"></script>
+<script src="js/restaurant.js"></script>
 
 </body>
 </html>
